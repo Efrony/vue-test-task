@@ -2,11 +2,13 @@
   <div class="form">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <h1>Форма подачи заявки в отдел сервиса и качества</h1>
-    <h5>Ваш филиал <span>*</span></h5>
+    <h5>Ваш филиал <span class="required">*</span></h5>
     <section>
       <select class="second-font">
         <option value="null" disabled selected>Выберите город</option>
-        <option v-for="city in cities" :value="city.id" :key="city.id">{{ city.title }}</option>
+        <option v-for="city in cities" :value="city.id" :key="city.id">
+          {{ city.title }}
+        </option>
       </select>
       <br />
       <label class="first-font"
@@ -15,31 +17,26 @@
     </section>
 
     <section>
-      <h5>Тема обращения <span>*</span></h5>
-      <label class="first-font"
-        ><input type="radio" checked name="subject" /> Не доволен качеством
-        услуг</label
-      ><br />
-      <label class="first-font"
-        ><input type="radio" name="subject" /> Расторжение договора</label
-      ><br />
-      <label class="first-font"
-        ><input type="radio" name="subject" /> Не приходит письмо активации на
-        почту</label
-      ><br />
-      <label class="first-font"
-        ><input type="radio" name="subject" /> Не работает личный кабинет</label
-      ><br />
+      <h5>Тема обращения <span class="required">*</span></h5>
+      <label
+        class="first-font"
+        v-for="subject in subjects"
+        :value="subject.id"
+        :key="subject.id"
+        >
+          <input type="radio" />{{ subject.title }}
+          <br>
+        </label>
       <input type="text" name="5" placeholder="Другое" class="second-font" />
     </section>
 
     <section>
-      <h5>Описание проблемы <span>*</span></h5>
+      <h5>Описание проблемы <span class="required">*</span></h5>
       <textarea
         name=""
         id=""
         cols="90"
-        rows="5"
+        rows="6"
         placeholder="Введите текст"
         class="first-font"
       ></textarea>
@@ -74,12 +71,24 @@ export default {
   // components: {
   //   SelectCustom,
   // },
-  
-  computed: {
-        cities() {
-          return [{"id":"1","title":"Москва"},{"id":"2","title":"Санкт-Петербург"},{"id":"3","title":"Екатеринбург"},{"id":"3","title":"Челябинск"}]
-        },
-    },
 
+  computed: {
+    cities() {
+      return [
+        { id: "1", title: "Москва" },
+        { id: "2", title: "Санкт-Петербург" },
+        { id: "3", title: "Екатеринбург" },
+        { id: "3", title: "Челябинск" },
+      ];
+    },
+    subjects() {
+      return [
+        { id: "1", title: "Не доволен качествомуслуг" },
+        { id: "2", title: "Расторжение договора" },
+        { id: "3", title: "Не приходит письмо активации на почту" },
+        { id: "3", title: "Не работает личный кабинет" },
+      ];
+    },
+  },
 };
 </script>

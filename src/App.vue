@@ -54,6 +54,8 @@ input[type="radio"] {
 textarea {
   padding: 5px;
   border: 1px solid lightgray;
+  resize: none;
+  font-family: Arial, sans-serif;
 }
 
 label {
@@ -78,6 +80,10 @@ button {
   font-size: 10px;
   font-weight: 500;
   padding: 9px 12px 7px 12px;
+}
+
+.required {
+  color: red;
 }
 
 /* #nav {
