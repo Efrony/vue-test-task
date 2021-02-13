@@ -64,7 +64,11 @@
 
 <script>
 // @ is an alias to /src
-import SelectCustom from "@/components/SelectCustom.vue";
+// import SelectCustom from "@/components/SelectCustom.vue";
+import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+
+// import axios from 'axios'
 
 export default {
   name: "Home",
@@ -73,14 +77,29 @@ export default {
   // },
 
   computed: {
-    cities() {
-      return [
-        { id: "1", title: "Москва" },
-        { id: "2", title: "Санкт-Петербург" },
-        { id: "3", title: "Екатеринбург" },
-        { id: "3", title: "Челябинск" },
-      ];
-    },
+    ...mapGetters([
+      'cities',
+    ]),
+
+    ...mapActions([
+      'fetchCities',
+    ]),
+
+    // cities() {
+    //   return [
+    //     { id: "1", title: "Москва" },
+    //     { id: "2", title: "Санкт-Петербург" },
+    //     { id: "3", title: "Екатеринбург" },
+    //     { id: "3", title: "Челябинск" },
+    //   ];
+    // },
+    // cities() {
+    //     axios.get('https://60254fac36244d001797bfe8.mockapi.io/api/v1/city')
+    //     .then(response => {
+    //         return (response.data)
+
+    //     })
+    // },
     subjects() {
       return [
         { id: "1", title: "Не доволен качествомуслуг" },
@@ -89,6 +108,10 @@ export default {
         { id: "3", title: "Не работает личный кабинет" },
       ];
     },
+  },
+
+   mounted() {
+      this.fetchCities()
   },
 };
 </script>

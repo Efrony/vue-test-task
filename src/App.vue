@@ -7,8 +7,8 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Arial, sans-serif;
+body {
+  font-family: Calibri, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
@@ -23,7 +23,7 @@ h1 {
 h5 {
   font-size: 11px;
   font-weight: 500;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 .first-font { 
