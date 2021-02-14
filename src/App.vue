@@ -15,6 +15,11 @@ body {
   color: #574c50;
 }
 
+form{
+  border: 1px solid lightgray;
+  padding: 15px 20px;
+}
+
 h1 {
   font-size: 15px;
   font-weight: 700;

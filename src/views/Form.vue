@@ -1,79 +1,81 @@
 <template>
-  <div class="form">
+  <div>
     <h1>Форма подачи заявки в отдел сервиса и качества</h1>
-    <h5>Ваш филиал <span class="required">*</span></h5>
-    <section>
-      <select v-model="form.city" :disabled="form.online" class="second-font">
-        <option :value="null" disabled selected>Выберите город</option>
-        <option v-for="city in cities" :value="city.id" :key="city.id">
-          {{ city.title }}
-        </option>
-      </select>
-      <br />
-      <label class="first-font"
-        ><input
-          type="checkbox"
-          v-model="form.online"
-          @change="form.city = null"
-        />Онлайн</label
-      >
-    </section>
+    <form onsubmit="return false;">
+      <h5>Ваш филиал <span class="required">*</span></h5>
+      <section>
+        <select v-model="form.city" :disabled="form.online" class="second-font">
+          <option :value="null" disabled selected>Выберите город</option>
+          <option v-for="city in cities" :value="city.id" :key="city.id">
+            {{ city.title }}
+          </option>
+        </select>
+        <br />
+        <label class="first-font"
+          ><input
+            type="checkbox"
+            v-model="form.online"
+            @change="form.city = null"
+          />Онлайн</label
+        >
+      </section>
 
-    <section>
-      <h5>Тема обращения <span class="required">*</span></h5>
-      <label class="first-font" v-for="title in titles" :key="title.id">
+      <section>
+        <h5>Тема обращения <span class="required">*</span></h5>
+        <label class="first-font" v-for="title in titles" :key="title.id">
+          <input
+            v-model="form.title"
+            :value="title.id"
+            @change="form.titleOther = null"
+            type="radio"
+            name="title"
+          />{{ title.theme }}
+          <br />
+        </label>
         <input
-          v-model="form.title"
-          :value="title.id"
-          @change="form.titleOther = null"
-          type="radio"
-          name="title"
-        />{{ title.theme }}
-        <br />
-      </label>
-      <input
-        :value="form.title ? null : form.titleOther"
-        @input="
-          form.title = null;
-          form.titleOther = $event.target.value;
-        "
-        type="text"
-        placeholder="Другое"
-        class="second-font"
-      />
-    </section>
+          :value="form.title ? null : form.titleOther"
+          @input="
+            form.title = null;
+            form.titleOther = $event.target.value;
+          "
+          type="text"
+          placeholder="Другое"
+          class="first-font"
+        />
+      </section>
 
-    <section>
-      <h5>Описание проблемы <span class="required">*</span></h5>
-      <textarea
-        v-model="form.text"
-        cols="90"
-        rows="6"
-        placeholder="Введите текст"
-        class="first-font"
-      ></textarea>
-    </section>
+      <section>
+        <h5>Описание проблемы <span class="required">*</span></h5>
+        <textarea
+          v-model="form.text"
+          cols="90"
+          rows="6"
+          placeholder="Введите текст"
+          class="first-font"
+        ></textarea>
+      </section>
 
-    <section>
-      <h5>Загрузка документов</h5>
-      <p class="second-font">
-        Приложите, пожалуйста, полноэкранный скриншот.
-        <br />
-        Это поможет быстрее решить проблему.
-      </p>
-      <p>
-        <input type="file" name="screenshot" class="first-font" />
-      </p>
-    </section>
+      <section>
+        <h5>Загрузка документов</h5>
+        <p class="second-font">
+          Приложите, пожалуйста, полноэкранный скриншот.
+          <br />
+          Это поможет быстрее решить проблему.
+        </p>
+        <p>
+          <input type="file" name="screenshot" class="first-font" />
+        </p>
+      </section>
 
-    <section>
-      <button
-        :disabled="!checkForm"
-        @click="() => this.sendForm(this.form)"
-      >
-        Отправить
-      </button>
-    </section>
+      <section>
+        <button
+          :disabled="!checkForm"
+          @click="() => this.sendForm(this.form)"
+        >
+          Отправить
+        </button>
+      </section>
+    </form>
   </div>
 </template>
 
