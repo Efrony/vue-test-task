@@ -8,11 +8,13 @@ const routes = [
     {
         path: '/',
         name: 'Form',
+        meta: { layout: 'form' },
         component: Form,
     },
     {
         path: '/success',
         name: 'Success',
+        meta: { layout: 'form' },
         component: () => import('../views/Success.vue'),
     },
 ]
