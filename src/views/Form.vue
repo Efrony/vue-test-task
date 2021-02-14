@@ -69,7 +69,7 @@
     <section>
       <button
         :disabled="!checkForm"
-        @click="() => this.$store.dispatch('sendForm', this.form)"
+        @click="() => this.sendForm(this.form)"
       >
         Отправить
       </button>
@@ -79,33 +79,30 @@
 
 <script>
 // @ is an alias to /src
-import { mapActions, mapMutations, mapGetters } from "vuex";
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
-  name: "Form",
-  data() {
-    return {};
-  },
-
-  computed: {
-    ...mapGetters(["cities", "titles", "form"]),
-    ...mapActions(["fetchCities", "sendForm"]),
-    ...mapMutations(["updateForm"]),
-
-    checkForm() {
-      this.$store.commit("updateForm", this.form);
-      if (
-        (this.form.city || this.form.online) &&
-        (this.form.title || this.form.titleOther) &&
-        this.form.text
-      ) {
-        return true;
-      }
-    },
-  },
-
+  name: 'Form',
   mounted() {
-    this.fetchCities;
+      this.fetchCities();
+  },
+  computed: {
+    ...mapGetters(['cities', 'titles', 'form']),
+    checkForm() {
+          this.updateForm(this.form);
+          if (
+              (this.form.city || this.form.online) &&
+              (this.form.title || this.form.titleOther) &&
+              this.form.text
+          ) {
+              return true;
+          }
+      },
+  },
+
+  methods: {
+    ...mapActions(['fetchCities', 'sendForm']),
+    ...mapMutations(['updateForm']),
   },
 };
 </script>
